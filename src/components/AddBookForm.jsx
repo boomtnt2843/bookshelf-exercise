@@ -1,14 +1,25 @@
-const AddBookForm = () => {
-  const title = "Domain Driven Design";
+"use client";
+import react from "react";
+const AddBookForm = ({ setBooks }) => {
+  const [title, setTitle] = react.useState("");
+  const handleOnChange = (e) => {
+    setTitle(e.target.value);
+  };
+  const handleOnSubmit = (e) => {
+    console.log(e.target.title.value);
+    setBooks((preState) => [...preState, { title: e.target.title.value }]);
+    e.preventDefault();
+  };
   return (
     <div>
       <h1>ADD TO COLLECTION</h1>
-      <form>
+      <form onSubmit={handleOnSubmit}>
         <div>
           <label>Title </label>
-          <input value={title} />
+          <input name="title" onChange={handleOnChange} />
+          <input type="submit" />
           <br />
-          {title}
+          <p>{title ? title : "please input some text!"}</p>
         </div>
       </form>
     </div>
