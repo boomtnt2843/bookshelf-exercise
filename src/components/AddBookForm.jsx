@@ -6,8 +6,9 @@ const AddBookForm = ({ setBooks }) => {
     setTitle(e.target.value);
   };
   const handleOnSubmit = (e) => {
-    console.log(e.target.title.value);
     setBooks((preState) => [...preState, { title: e.target.title.value }]);
+    setTitle("")
+    e.target.reset();
     e.preventDefault();
   };
   return (
